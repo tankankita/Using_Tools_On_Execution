@@ -1,0 +1,62 @@
+Name : Ankita Tank
+netid: atank2
+CS ID: atank
+
+0. 
+This was a give away . You had to run the executable file with the command ‘./0’ and it will spit out a secret without any effort! UUVTXV8=
+
+1. 
+gdb the executable file using command ‘gdb 1’. Set the breakpoint at 1. Then run the executable inside your gdb. Keep iteration to the next instruction until you see the message appear while in gdb, "behold! I will only tell you the secret password if you enter the random number I just generated!." 
+Enter the command 'info local’ and It will give you a random integer number. Go to the next instruction and enter the random number we got from the gdb. Keep advancing to the next line until you see the message: "you win! the secret is:
+UEZSWl4=
+
+2. 
+By using the command ./2 ,we will see that the password is "yes" without quotes if the call to curl_easy_perform was successful; the password is "no" without quotes if the call to curl_easy_perform as unsuccessful. 
+But the password is 'Yes', because the exit status is 0 which means the command was executed successfully.
+
+3.
+For this secret we would use ‘ltrace’. Using the command ‘ltrace ./3’ , we will receive a message that says,’checking for the existence of a "...checking for the existence of a file with a special name…’ . gdb then gives us a hit that we need to have a fle names ‘iamspecial’. So create a file file named "iamspecial".inside that file just include “ int main(){return 0;} “, next,  ltrace on the executable file again using the command ‘ ltrace ./3 ‘ . You should receive a message at the end of ltrace that says: printf("%s%s\n", "you win! the secret is:\n", "U0dVW10="you win! the secret is:
+U0dVW10=
+
+
+4.
+ltrace the executable file. When we ltrace the file we will  see that there was an 
+error while loading the shared library 'lib361.so' because the file doesn't exist in the
+Directory so we have to create one. The next step is to create a new library called ‘lib361’.
+To make the shared you have to first create a .c file name 'lib361.so'. let me break the following procedure down in few steps because we will repeating the same steps couple of times.
+
+Step 1) Create an object file with the the command 'gcc -o lib361 lib361.c'. 
+Step 2) create a .so file with the command 'gcc -shared -o lib361.so lib361.c'. 
+Step 3) Create a library path using the command 'setenv LD_LIBRARY_PATH /user/lib:'. 
+Step 4) ltrace the executable file again.
+ 
+We will still have some errors when we ltrace the 4th executable but those errors also give some hints to find out secret
+The program is looking for a function name 
+'secretoperation' and it also seems like it has 3 or 4 integer parameters 
+and also says there is no return so we can assume that it's expecting a return value 
+from the function secretoperation. create the function secretoperation
+in lib361 file with 3 int parameter and return some integer value.
+Now lets repeat those 4 steps again to see what has changed. We would still have errors
+and since return value was 0. Change the return value to 10 as it is required by the programIt's So let's have the return value to be set as 10 and repeat those 4 steps again.
+Now it seems like the function was called twice and the parameters are different 
+both the times but it does accept the first return value but for the second one 
+it's asking return value of 4. Now what we can do is put some if statements according
+to the parameters as shown below:
+
+My lib361.c file
+#include <stdio.h>
+        int secretoperation(int x, int y, int z){
+                if (x==3 || y ==6)return 10;
+                else if(x==1 || y==2)return 4;
+        }
+
+
+int main(void){
+return 0;
+}
+
+And repeat the above 4 steps again. And now you should see the secret password as it outputs the following:
+printf("%s%s\n", "you win! the secret is:\n", "UkBUWFw="you win! the secret is:
+UkBUWFw=
+
+

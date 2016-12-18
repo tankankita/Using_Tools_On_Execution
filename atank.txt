@@ -1,0 +1,26 @@
+0.
+This one is giveaway!!!
+all we have to do is run the executable file. Run it in gdb and it will say that you won and will display the 0th secret thats is "".
+
+1.
+First go into gdb of the executable file. Put a breakpoint at line 1. 
+Run the executable inside the gdb. Keep going to the next line until you see the message:
+"behold! I will only tell you the secret password if you enter the random number  just generated!" 
+which you'll see tath it's at line number 21. 
+Then enter the command 'info locals' which will give a random number. 
+Go to the next line and enter the random number, 
+then keep going to the next line until the secret displays on the screen. 
+Ane there you've FOUND THE SECRET.
+
+2.
+The password is 'Yes' because the exit status is 0 whic means the command was executed successfully.
+3.
+First, ltrace the executable file. After running the executable file with ltrace,
+you'll see on the display screen that the it's unfinished and it's checking for the
+existence file "iamspecial". ltrace also, gives a hint by saying that there's a 
+file with a special name and gives a name of the file. 
+Now create a file and name it the same name that was displayed on the screen before.
+In this case it would be 'iamspecial'. After creating the file, run the command 'chmod 777 <filename>' 
+which will change the file permissions to readable, writeable, and executable. 
+Then run the executable file.The screen should display a message 
+saying that the correct file is found and also display the secret.
